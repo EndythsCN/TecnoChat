@@ -44,6 +44,13 @@ export default function RegisterScreen({ navigation }) {
             onPress={() => navigation.goBack()}
           />
         </View>
+        <View>
+          <CustomButton
+          title="Ya tengo cuenta"
+          variant="outline"
+          onPress={()=> navigation.goBack()}
+          />
+          </View>
       </View>
     </AuthLayaout>
   );

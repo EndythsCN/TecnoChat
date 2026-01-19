@@ -1,26 +1,50 @@
-import { View, Text, StyleSheet } from "react-native";
-import { useAuthStore } from "../../store/useAuthStore";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 import { useThemeStore } from "../../store/useThemeStore";
-import CustomButton from "../../components/ui/CustomButton";
+import { useFriends } from "../../hooks/useFriends";
+import FriendItem from "../../components/friends/FriendItem";
+import CustomInput from "../../components/ui/CustomInput";
 
-export default function FriendsScreen() {
-  const { logout, user } = useAuthStore();
+export default function FriendsScreen({ navigation }) {
   const { colors } = useThemeStore();
+  const { friends, search, setSearch } = useFriends();
+
+  const handlePressFriend = (friend) => {
+    navigation.navigate("PrivateChat", {
+      userId: friend.id,
+      userName: friend.name,
+    });
+  };
 
   return (
-    <View style={[styles.content, { backgroundColor: colors.background }]}>
-      <View style={styles.content}>
-        <Text style={[styles.title, { color: colors.textSecondary }]}>
-          ¡Hola, {user?.name || "Usuario"}! 👋
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={styles.header}>
+        <Text style={[styles.title, { color: colors.textPrimary }]}>
+          Mis contactos ({friends.length})
         </Text>
-
-        <Text style={[styles.text, { color: colors.textSecondary }]}>
-          Amigos
-        </Text>
-        <View style={styles.buttonContainer}>
-          <CustomButton title="Cerrar Sesion" onPress={logout} />
-        </View>
       </View>
+
+      <FlatList
+        data={friends}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={styles.listContent}
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item }) => (
+          <FriendItem
+            name={item.name}
+            isOnline={item.isOnline}
+            lastMessage={item.lastMessage}
+            onPress={() => handlePressFriend(item)}
+          />
+        )}
+        ListEmptyComponent={
+          <View style={styles.emptyContainer}>
+            <Text style={{ fontSize: 40 }}>😎</Text>
+            <Text style={{ color: colors.textSecondary, marginTop: 10 }}>
+              No se encontraron Amigos
+            </Text>
+          </View>
+        }
+      />
     </View>
   );
 }
@@ -28,23 +52,23 @@ export default function FriendsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    justifyContent: "center",
   },
-  content: {
-    alignItems: "center",
+  header: {
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 0,
   },
   title: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 15,
   },
-  text: {
-    fontSize: 16,
-    textAlign: "center",
-    marginBottom: 40,
+  listContent: {
+    padding: 20,
+    paddingTop: 10,
   },
-  buttonContainer: {
-    width: "100%",
+  emptyContainer: {
+    alignItems: "center",
+    marginTop: 50,
   },
 });

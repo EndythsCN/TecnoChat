@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useThemeStore } from "../../store/useThemeStore";
 import { useLogin } from "../../hooks/useLogin";
 import AuthLayaout from "../../components/auth/AuthLayaout";
@@ -68,14 +68,7 @@ export default function LoginScreen({ navigation }) {
           </View>
         </View>
 
-        <View style={styles.footer}>
-          <Text
-            onPress={toggleTheme}
-            style={[styles.link, { color: colors.textSecondary }]}
-          >
-            Cambiar a {mode === "light" ? "Modo Oscuro 🌙" : "Modo Claro ☀"}
-          </Text>
-        </View>
+        
       </View>
     </AuthLayaout>
   );
@@ -87,10 +80,6 @@ const styles = StyleSheet.create({
   },
   actions: {
     marginTop: 10,
-  },
-  footer: {
-    alignItems: "center",
-    marginTop: 30,
   },
   link: {
     fontSize: 14,

@@ -1,16 +1,16 @@
 {
   "expo": {
     "name": "TecnoChat",
-    "slug": "TecnoChat",
-    "version": "1.0.0",
-    "orientation": "portrait",
+    "slug": "tecnochat",
+    "version": "1.1.3.0",
+    "orientation": "default",
     "icon": "./src/assets/images/TecnoCHat.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
       "image": "./src/assets/images/TecnoCHat.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#14213D"
     },
     "ios": {
       "supportsTablet": true
@@ -18,9 +18,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/TecnoCHat.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#14213D"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": false
     },
     "web": {
       "favicon": "./src/assets/images/TecnoCHat.png"

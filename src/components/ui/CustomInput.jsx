@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 14,
         marginBottom: 8,
-        fontWeight: '600',
+        fontWeight: 'bold',
         marginLeft:4,
     },
     input: {

@@ -25,7 +25,7 @@ export default function CustomButton({
       activeOpacity={0.8}
       style={[
         styles.button,
-        { backgroundColor: bgColor, borderColor: colors.primary },
+        { backgroundColor: bgColor, borderColor: colors.textOther },
         !isPrimary && styles.outlineButton,
       ]}
     >
